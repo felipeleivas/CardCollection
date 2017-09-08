@@ -173,21 +173,57 @@ public class CollectionController {
 	
 //	###############################################################################################################################################
 
-	@GetMapping("update/cost")
-	public String updateCost2(Model model) {
-		return "updateCost" ;
-	}
-	
-	@PostMapping("update/cost")
-	public String updateCost(@RequestParam("id") Integer id, @RequestParam("newCost") Integer newCost,Model model) {
+	@GetMapping("update")
+	public String update(Model model,@RequestParam("id")Integer id) {
+		Card card = null;
 		try {
-			this.cm.updateCost(id, newCost);
-			model.addAttribute("Card",this.cm.showCard(id));
+			card=this.cm.showCard(id);
 		} catch (CardNotFoundException e) {
-			model.addAttribute("message","There is no card with that ID");
+			model.addAttribute("message", "Card not found");
 			return "cardNotFound";
 		}
-		return "postShowCard" ;
+		model.addAttribute("card",card);
+		if(card.getClass() == Minion.class) {
+			return "updateMinion";
+		}
+		if(card.getClass() == Spell.class) {
+			return "update/spell";
+		}
+		if(card.getClass() == Weapon.class) {
+			return "update/weapon";
+		}
+		return "error" ;
+	}
+	
+	@PostMapping("update/minion")
+	public String updateMinion(@RequestParam("name") String name,@RequestParam("description") String description,
+							   @RequestParam("cost") Integer cost,@RequestParam("hero") String hero,
+							   @RequestParam("rarity") Integer rarity,@RequestParam("id") Integer id,@RequestParam("maxAtk") Integer maxAtk,
+							   @RequestParam("maxLife") Integer maxLife,@RequestParam("type") Integer type,Model model) {
+		
+		Card card;
+		try {
+			card = this.cm.showCard(id);
+		} catch (CardNotFoundException e) {
+			return "error";
+		}
+		if(card.getClass() == Minion.class) {
+			Minion minion = (Minion) card;
+			minion.setCost(cost);
+			minion.setDescriptionn(description);
+			
+			minion.setHero(this.cm.getHero(hero));
+			minion.setMaxAtk(maxAtk);
+			minion.setMaxLife(maxLife);
+			minion.setName(name);
+			minion.setRarity(this.cm.getRarity(rarity));
+			minion.setTypeOfMinion(this.cm.getTypeOfMinion(type));
+			this.cm.updateMinion(minion);
+			
+		}
+		
+		
+		return "error";
 	}
 	
 	@GetMapping("update/atk")

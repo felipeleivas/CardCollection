@@ -43,25 +43,8 @@ public class CardManagementClass implements CardManagement{
 	}
 
 	@Override
-	public void updateCost(Integer cardId, Integer newCost) throws CardNotFoundException {
-		Card card;
-		card = this.getCardByCode(cardId);
-		if(card != null) {
-			card.setCost(newCost);
-			if(card.getClass() == Minion.class) {
-				this.minions.save((Minion)card);
-			}
-			if(card.getClass() == Weapon.class) {
-				this.weapons.save((Weapon)card);
-			}
-			if(card.getClass() == Spell.class) {
-				this.spell.save((Spell)card);
-			}
-			
-		}
-		else {
-			throw new CardNotFoundException("There is not card with that ID");
-		}
+	public void updateMinion(Minion newMinion){
+		this.minions.save(newMinion);
 		
 	}
 

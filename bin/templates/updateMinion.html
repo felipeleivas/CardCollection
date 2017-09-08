@@ -1,0 +1,81 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:replace="menu :: menu"></div> 
+<head> 
+    <title>Add Minion</title> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<style type="text/css">
+	
+	.form-control{
+	background-color:rgba(255,255,255,0.5);
+	
+	}
+	select, option {
+	    width: 250px !important;
+	    background: rgba(255,255,255,0.5) !important;
+	    color:blue;
+	    text-shadow:0 1px 0 rgba(0,0,0,0.4);
+	}
+	option:not(:checked) {
+	    background-color: white;
+	    color:#000;
+	}
+	</style>
+</head>
+<body>
+	<div class="container">
+      <form th:action="@{/update/minion}" method="post">
+            <div  class="form-group">
+            	<label> Card Id: </label>
+            	<input class="form-control"  type="number" name="id" required = "required" th:value="${card.id}" readonly="readonly"/> 
+            </div>
+            
+            <div  class="form-group">
+            	<label> Card Name: </label>
+            	<input class="form-control" type="text" name="name" required = "required" th:value="${card.name}" placeholder="Insert the card name"/> 
+            </div>
+        	<div  class="form-group">
+        		<label>Type Of Minion:</label>
+            	<input class="form-control"  type="text" name="id" required = "required" th:value="${card.typeOfMinion.name}" readonly="readonly"/> 
+			</div>
+			<div  class="form-group">
+        		<label>Rarity of Minion:</label>
+	            	<input class="form-control"  type="text" name="id" required = "required" th:value="${card.rarity.name}" readonly="readonly"/> 
+
+			</div>
+			
+			<div  class="form-group">
+        		<label>Minion Hero:</label>
+            		<input class="form-control"  type="text" name="id" required = "required" th:value="${card.hero.name}" readonly="readonly"/> 
+
+			</div>
+			
+			<div  class="form-group">
+				<label> Minion description:</label>
+				<input class="form-control" type="text"  name="description" placeholder="Insert the minion description"/> 
+			</div>
+			
+			<div  class="form-group">
+				<label> Minion cost: </label>
+				<input  class="form-control" type="number" min="0" required = "required" name="cost" placeholder="Insert the minion cost"/> 
+			</div>
+			
+			<div  class="form-group">
+				<label> Minion attack: </label>
+				<input class="form-control" type="number" min="0" required = "required" name="maxAtk" placeholder="Insert the minion attack"/> 
+			</div>
+			
+			<div  class="form-group">
+				<label> Minion life: </label>
+				<input class="form-control" type="number" min="0" required = "required" name="maxLife" placeholder="Insert the life"/> 
+			</div>
+			      
+			
+			
+            <div><input class="btn btn-outline-info" type="submit" value="Add Card"/></div>
+        </form>
+        <br/>
+        
+   </div>
+</body>
+</html> 

@@ -33,8 +33,8 @@ public class CollectionManagementClass implements CollectionManagement{
 	}
 
 	@Override
-	public void updateCost(Integer cardId, Integer newCost) throws CardNotFoundException {
-		cm.updateCost(cardId, newCost);
+	public void updateMinion(Minion updatedMinion) {
+		cm.updateMinion(updatedMinion);
 		
 	}
 
