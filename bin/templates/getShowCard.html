@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head> 
+	<div th:replace="menu :: menu"></div> 
+    <title>Show A Card</title> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<div class="container">
+      <form th:action="@{/showCard}" method="post">
+            <div class = "from-group">
+            	<label> Card Name: </label>
+            	<input class="form-control" type="text" required="required" name="cardName" placeholder="Enter the card name"/> 
+            </div>
+          
+            <br/>
+            <div><input class="btn btn-outline-info" type="submit"  value="Get Card" /></div>
+        </form>
+	</div>
+</body>
+</html> 

@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:replace="menu :: menu"></div> 
+<head> 
+    <title>Update Card Life</title> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<div class="container">
+      <form th:action="@{/update/def}" method="post">
+            <div class="form-group">
+            	<label> Card Id:  </label>
+            	<input class="form-control" required = "required" type="number" min="0" name="id" placeholder="Enter the card Id"/>
+            </div>
+            
+            <div class="form-group">
+	            <label> New life:</label>
+	            <input class="form-control" required = "required" type="number" min="0" name="newDef" placeholder="Enter the card new life"/> 
+	       </div>
+            
+            <div><input class="btn btn-outline-info" type="submit" value="Update Card"/></div>
+        </form>        
+	</div>
+</body>
+</html> 

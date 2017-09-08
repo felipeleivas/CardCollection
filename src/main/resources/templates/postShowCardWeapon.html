@@ -1,0 +1,11 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head> 
+	<div th:replace="menu :: menu"></div> 
+    <title>Show a Card</title> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+      <p  th:text="  'Your minion is ' + ${Card.name} +  ' and his description is: ' + ${Card.description}"> </p> 
+</body>
+</html> 

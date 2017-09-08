@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:replace="menu :: menu"></div> 
+<head> 
+    <title>Get Hero Cards</title> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<div class="container">
+      <form th:action="@{/showCardsHero}" method="post">
+      	<div class="form-group">
+            <label>Choose Your Hero:</label>
+            <select class="form-control" name = "hero">
+							<option  th:each="hero: ${heros}" th:value="${hero.name}" th:text="${hero.name}"/>
+			</select>
+        <br/>
+            <div><input class="btn btn-outline-info" type="submit" value="Show class cards"/></div>
+      	</div>
+        </form>
+        
+	</div>
+</body>
+</html>  	

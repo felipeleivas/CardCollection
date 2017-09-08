@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:replace="menu :: menu"></div> 
+
+<head> 
+    <title>Getting Started: Serving Web Content</title> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<div class="container">
+      <form th:action="@{/showCardsWithCost}" method="post">
+      	<div class = "from-group">
+            	<label> Cost of cards: </label>
+            	<input class="form-control" type="number" required="required" min="0" name="cost" placeholder="Enter the card cost"/> 
+            </div>
+          
+            <br/>
+            <div><input class="btn btn-outline-info" type="submit"  value="Get Cards" /></div>
+        </form>
+       
+        
+	</div>
+</body>
+</html>  	

@@ -1,0 +1,17 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head> 
+	<div th:replace="menu :: menu"></div> 
+    <title>Show a Card</title> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<div class="container">
+	      <h4>
+		      <p  th:text="  'Your minion is ' + ${Card.name} +  ' his description is ' + ${Card.description} + ' he has ' + ${Card.maxAtk} +
+		      ' Attack and ' + ${Card.maxLife} + ' Life and cost ' + ${Card.cost}
+		      "> </p> 
+	      </h4>
+	</div>
+</body>
+</html> 

@@ -1,0 +1,123 @@
+<!DOCTYPE HTML>
+<html>
+<div th:replace="menu :: menu"></div> 
+<head> 
+    <title>Show Weapons</title> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<style>
+		header{
+			background-color: rgba(0, 0, 0, 0.2);
+			margin-top:0px;
+			height:100%;
+			text-align:center;
+			font-size:50px;
+		}
+		body{
+				color:white;
+				font-family:sans-serif;
+				margin: 0;
+				margin-top: 0; 
+		}
+		
+		table{
+			margin:auto;
+			margin-top:2%;
+			border:1px solid Black;
+			border-width:medium;
+			background-color:rgba(125,0,0,0.5);
+			border-collapse:collapse;
+			width: 80%;
+			font-family:sans-serif;
+			color:white;
+			font-size:18px;
+			}
+		th{
+			border:1px solid Black;
+			height:50px; 
+			font-size:25px;
+			font-weight:bold;
+			text-align:center;
+			
+		}
+		td{
+			border:1px solid Black;
+			height:30px;
+			padding: 15px;
+		}
+		.x1{
+			background-color:rgba(239, 98, 98,0.5);
+			transition:0.5s;
+			
+		}
+		.x1:hover{background-color:rgba(239, 98, 98,0.5);}
+		tr:nth-child(even){background-color: rgb(206, 49, 49);}
+		tr:hover{background-color: rgba(160, 228, 232,0.5)};
+		
+		h1{
+				text-align:center;
+				font-size:50px;
+				background-color:rgba(0,0,0,.5)
+		}
+		#table-wrapper {
+		  position:relative;
+		}
+		#table-scroll {
+		  height:750px;
+		  overflow:auto;  
+		  margin-top:20px;
+		}
+		#table-wrapper table {
+		  width:80%;
+		
+		}
+		
+		#table-wrapper table thead th .text {
+		  position:absolute;   
+		  top:-20px;
+		  z-index:2;
+		  height:20px;
+		  width:35%;
+		  
+		}
+
+	</style>
+</head>
+<body>
+    <header > Cards </header>
+	<div id="table-wrapper">
+  		<div id="table-scroll">
+		    <table>
+		    	<tr class="x1">
+		              <th th:text="Name">nomeCalibre</th>
+		              <th th:text="ID">nomeCalibre</th>
+		              <th th:text="Cost">nomeCalibre</th>
+		              <th th:text="Description">nomeCalibre</th>
+		              <th th:text="Hero">nomeCalibre</th>
+		              <th th:text="Rarity">nomeCalibre</th>
+		              <th th:text="Attack">nomeCalibre</th>
+		              <th th:text="Duration">nomeCalibre</th>
+		              
+		
+		          </tr>
+		          	
+		  		<tbody>
+					    <tr th:each="weapon : ${weapons}">
+			      		<td th:text="${weapon.name}" >Banana</td>
+			      		<td th:text="${weapon.id}" >Banana</td>
+			      		<td th:text="${weapon.cost}" >Banana</td>
+			      		<td th:text="${weapon.description}" >Banana</td>
+			      		<td th:text="${weapon.hero.name}" >Banana</td>
+			      		<td th:text="${weapon.rarity}" >Banana</td>
+			      		<td th:text="${weapon.attack}" >Banana</td>
+			      		<td th:text="${weapon.duration}" >Banana</td>
+		
+				 
+				 	   </tr>
+				  </tbody>
+		          
+		          
+		    </table>
+		</div>
+	</div>
+</body>
+</html>

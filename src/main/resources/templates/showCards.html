@@ -1,0 +1,144 @@
+<!DOCTYPE HTML>
+<html>
+<head> 
+    <title>Show Cards</title> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel = "stylesheet" type= "text/css" href = "background.css"/>
+	<div th:replace="menu :: menu"></div> 
+	
+	<style>
+		header{
+			background-color: rgba(0, 0, 0, 0.2);
+			margin-top:0px;
+			height:100%;
+			text-align:center;
+			font-size:50px;
+		}
+		body{
+				color:white;
+				font-family:sans-serif;
+				margin: 0;
+				margin-top: 0; 
+		}
+		
+		table{
+			margin:auto;
+			margin-top:2%;
+			border:1px solid Black;
+			border-width:medium;
+			background-color:rgba(125,0,0,0.5);
+			border-collapse:collapse;
+			width: 80%;
+			font-family:sans-serif;
+			color:white;
+			font-size:18px;
+			}
+		th{
+			border:1px solid Black;
+			height:50px; 
+			font-size:25px;
+			font-weight:bold;
+			text-align:center;
+			
+		}
+		td{
+			border:1px solid Black;
+			height:30px;
+			padding: 15px;
+		}
+		.x1{
+			background-color:rgba(239, 98, 98,0.5);
+			transition:0.5s;
+			
+		}
+		.x1:hover{background-color:rgba(239, 98, 98,0.5);}
+		tr:nth-child(even){background-color: rgb(206, 49, 49);}
+		tr:hover{background-color: rgba(160, 228, 232,0.5)};
+		
+		h1{
+				text-align:center;
+				font-size:50px;
+				background-color:rgba(0,0,0,.5)
+		}
+		#table-wrapper {
+		  position:relative;
+		}
+		#table-scroll {
+		  height:750px;
+		  overflow:auto;  
+		  margin-top:20px;
+		}
+		#table-wrapper table {
+		  width:80%;
+		
+		}
+		
+		#table-wrapper table thead th .text {
+		  position:absolute;   
+		  top:-20px;
+		  z-index:2;
+		  height:20px;
+		  width:35%;
+		  
+		}
+
+	</style>
+</head>
+
+<body>
+
+	<header>
+	 Cards 
+	
+	</header>
+	<div id="table-wrapper">
+  		<div id="table-scroll">
+		    <table    >
+				
+		    	<tr class="x1">
+		              <th th:text="Name">nomeCalibre</th>
+		              <th th:text="ID">nomeCalibre</th>
+		              <th th:text="Cost">nomeCalibre</th>
+		              <th th:text="Description">nomeCalibre</th>
+		              <th th:text="Hero">nomeCalibre</th>
+		              <th th:text="Rarity">nomeCalibre</th>
+					  <th th:text="Action">x</th>
+		          </tr>
+		          	
+		  		<tbody>
+		  		
+					    <tr th:each="card : ${cards}">
+					    
+			      		<td th:text="${card.name}" >Banana</td>
+			      		<td th:text="${card.id}" >Banana</td>
+			      		<td th:text="${card.cost}" >Banana</td>
+			      		<td th:text="${card.description}" >Banana</td>
+			      		<td th:text="${card.hero.name}" >Banana</td>
+			      		<td th:text="${card.rarity}" >Banana</td>
+						<td>
+							<a class="td-edit" th:href=" '/update/card?id=' + ${card.id}"><span
+							class="glyphicon glyphicon-edit"></span></a>
+							
+						</td>
+				 
+				 	   </tr>
+				  </tbody>
+		          
+		          
+		    </table>
+		</div>
+	</div>
+	<footer>
+		<div style="text-align:right" >
+			<div style="font-size:5px">
+				<a href="http://sequelado.com.br/wp-content/uploads/2011/01/ventilador_online.gif"> calor</a>
+			</div>
+		</div>
+		<div style="text-align:left" >
+			<div style="font-size:5px">
+				<a href="https://1.bp.blogspot.com/-RnAvM9zAajU/VySuVUFbbWI/AAAAAAAAT4c/YN31UHGnlwwzOjCrjGfA1z_Oar6djL5XQCLcB/s1600/Gifs%2Banimados%2BLareira%2B12.gif"> frio</a>
+			</div>
+		</div>
+	</footer>
+</body>
+</html>

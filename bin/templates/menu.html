@@ -1,0 +1,134 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="menu" >
+<head> 
+   
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+  		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<style type="text/css">
+	 
+	/*Configurações Padrões*/
+	ul.menu, .menu li, .menu a{ margin:0; padding:0; list-style:none; text-decoration:none;}
+	ul.menu ul{ position:absolute; display:none; box-shadow:3px 3px 2px #333;}
+	 
+	/* Configurações nivel 1*/
+	ul.menu{ float:left; font-family:Verdana, Geneva, sans-serif; font-size:15px; border-radius:5px; padding:0 5px;}
+	.menu li{ float:left; width:auto; position:relative;}
+	.menu li a{ display:block; padding:0 20px; line-height:45px; height:45px; float:left; transition:all 0.1s linear; }
+	 
+	/* Configurações nivel 2*/
+	.menu li:hover > ul.submenu-1{z-index: 1; display:block; top:45px; left:0; padding:5px; width:200px; border-radius:0 0 5px 5px;   }
+	.menu ul.submenu-1 a{  width:200px; padding:0 20px; border-radius:5px;  }
+	 
+	/* Configurações nivel 2*/
+	.menu li:hover > ul.submenu-2{ display:block; top:0; left:195px; padding:5px; width:200px;  border-radius: 0 5px 5px 5px; }
+	.menu ul.submenu-2 a{  width:160px; padding:0 20px; border-radius:5px; }
+	 
+	
+	/*Configurações de cores*/
+	 
+	/*nivel 1*/
+	
+	.menu a{ color:#827c7c;}
+	
+	
+	 
+	/*nivel 2*/
+	.submenu-1{ background:#1e1e1e;}
+	.submenu-1 a{color:#827c7c;}
+	.submenu-1 li:hover > a{ background:#ffffff; }
+
+	.btn-danger{
+	background-color:#0a0a0a;
+	border-color:#0a0a0a;
+	margin-top:7px;
+	margin-left:65%;
+	color:#827c7c;
+
+	}
+	.btn-success,.btn-warning,.btn-info,.btn-primary{
+	background-color:#0a0a0a;
+	border-color:#0a0a0a;
+
+	}
+	.container-fluid,.navbar-inverse{
+		background-color:#0a0a0a;
+		color:gray;
+	}
+	
+	body::after{
+	background-image: url("http://www.gruntartv.com.br/wp-content/uploads/2015/03/hearthstone-deck.jpg");
+	content: "";
+    opacity: 0.5;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+    z-index: -1; 
+}	
+	
+	</style>
+	</head>
+	
+			<nav class="navbar navbar-inverse">
+			  <div class="container-fluid">
+			    <div class="navbar-header">
+			      <a class="navbar-brand" href="/home">Card Collection</a>
+			    </div>
+			    
+			    <ul class="menu"> <!-- Esse é o 1 nivel ou o nivel principal -->
+				    <li ><a href="#" class = "btn btn-success">Add Card</a>
+				    	<ul class="submenu-1"> <!-- Esse é o 2 nivel ou o primeiro Drop Down -->
+				            <li><a href="/addCard/minion">Add Minion </a></li>
+				            <li><a href="/addCard/spell">Add Spells </a></li>
+				            <li><a href="/addCard/weapon">Add Weapons </a></li>
+			   	            
+			   
+				        </ul>
+				    </li>
+				    
+				    <li><a href="#" class = "btn btn-warning">Show </a>
+				        <ul class="submenu-1"> <!-- Esse é o 2 nivel ou o primeiro Drop Down -->
+				            <li><a href="/show/Cards">All Cards </a></li>
+				            <li><a href="/show/Spells">All Spells </a></li>
+				            <li><a href="/show/Weapons">All Weapons </a></li>
+			   	            <li><a href="/show/Minions">All Minions </a></li>
+			   	            <li><a href="/show/CardsHero" method="get">All Cards Of A Hero </a></li>
+			   	            <li><a href="/show/CardsWithCost">All Cards With Cost </a></li>
+			   	            <li><a href="/show/Card">A Card </a></li>
+			   
+				        </ul>
+				    </li>
+				    
+				    <li><a href="#" class="btn btn-info">Update</a>
+				        <ul class="submenu-1"> <!-- Esse é o 2 nivel ou o primeiro Drop Down -->
+				            <li><a href="/update/cost">Card cost </a></li>
+				            <li><a href="/update/def">Minion life </a></li>
+				            <li><a href="/update/atk">Minion attack </a></li>
+			   	            
+				        </ul>
+				    
+				    </li>
+				    <li><a href="/deleteCard "  class="btn btn-primary"> Delete Card</a></li>	 
+
+					<li>
+
+					</li>
+
+					<li>
+
+					</li>
+				</ul>
+					<form  th:action="@{/logout}" method="post">
+						<input class= "btn btn-danger" type="submit" value="Logout"/>
+					</form>
+				
+			  </div>
+			   
+			</nav>
+
+	</div>
+</html>
