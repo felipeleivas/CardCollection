@@ -8,9 +8,9 @@ import exceptions.TypeOfCardNotExist;
 public interface CollectionManagement {
 
 	public void addCard(Card card) throws TypeOfCardNotExist;
-	void updateMinion(Minion updatedMinion);
-	public void updateAtk(Integer cardId, Integer newAtk) throws CardNotFoundException;
-	public void updateDef(Integer cardId, Integer newDef) throws CardNotFoundException;
+	public void updateMinion(Minion updatedMinion);
+	public void updateSpell(Spell updatedSpell);
+	public void updateWeapon(Weapon updatedWeapon);
 	public void deleteCard(Integer cardId) throws CardNotFoundException;
 	
 	public Card showCard(Integer id) throws CardNotFoundException;

@@ -36,43 +36,51 @@
             </div>
         	<div  class="form-group">
         		<label>Type Of Minion:</label>
-            	<input class="form-control"  type="text" name="id" required = "required" th:value="${card.typeOfMinion.name}" readonly="readonly"/> 
-			</div>
+					<select class="form-control" name = "type">
+								<option  th:each="type: ${typesOfMinion}" th:value="${type.id}" th:text="${type.name}"/> 
+								<option selected="selected" th:value="${chosenType.id}" th:text="${chosenType.name}"/> 
+					</select>			</div>
+			
 			<div  class="form-group">
         		<label>Rarity of Minion:</label>
-	            	<input class="form-control"  type="text" name="id" required = "required" th:value="${card.rarity.name}" readonly="readonly"/> 
-
+					<select class="form-control" name = "rarity">
+								<option  th:each="rarity: ${rarities}" th:value="${rarity.id}" th:text="${rarity.name}"/> 
+								<option selected="selected" th:value="${chosenRarity.id}" th:text="${chosenRarity.name}"/> 
+					</select>
 			</div>
 			
 			<div  class="form-group">
         		<label>Minion Hero:</label>
-            		<input class="form-control"  type="text" name="id" required = "required" th:value="${card.hero.name}" readonly="readonly"/> 
+            		<select class="form-control" name = "hero">
+								<option selected="selected" th:value="${chosenHero.name}" th:text="${chosenHero.name}"/> 
+								<option  th:each="hero: ${heroes}" th:value="${hero.name}" th:text="${hero.name}"/>
+					</select>
 
 			</div>
 			
 			<div  class="form-group">
 				<label> Minion description:</label>
-				<input class="form-control" type="text"  name="description" placeholder="Insert the minion description"/> 
+				<input class="form-control" type="text" th:value="${card.description}" name="description" placeholder="Insert the minion description"/> 
 			</div>
 			
 			<div  class="form-group">
 				<label> Minion cost: </label>
-				<input  class="form-control" type="number" min="0" required = "required" name="cost" placeholder="Insert the minion cost"/> 
+				<input  class="form-control" type="number" min="0" required = "required" th:value="${card.cost}" name="cost" placeholder="Insert the minion cost"/> 
 			</div>
 			
 			<div  class="form-group">
 				<label> Minion attack: </label>
-				<input class="form-control" type="number" min="0" required = "required" name="maxAtk" placeholder="Insert the minion attack"/> 
+				<input class="form-control" type="number" min="0" required = "required" name="maxAtk" th:value="${card.maxAtk}" placeholder="Insert the minion attack"/> 
 			</div>
 			
 			<div  class="form-group">
 				<label> Minion life: </label>
-				<input class="form-control" type="number" min="0" required = "required" name="maxLife" placeholder="Insert the life"/> 
+				<input class="form-control" type="number" min="0" required = "required" name="maxLife"  th:value="${card.maxLife}" placeholder="Insert the life"/> 
 			</div>
 			      
 			
 			
-            <div><input class="btn btn-outline-info" type="submit" value="Add Card"/></div>
+            <div><input class="btn btn-outline-info" type="submit" value="Update Card"/></div>
         </form>
         <br/>
         

@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,8 +8,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import aj.org.objectweb.asm.Type;
 import exceptions.CardNotFoundException;
 import exceptions.TypeOfCardNotExist;
 
@@ -48,7 +51,7 @@ public class CollectionController {
 	public String showCard(Model model) {
 		return "getShowCard";
 	}
-	@PostMapping("/showCard")
+	@RequestMapping("/showCard")
 	public String showCardPost(@RequestParam("cardName") String cardName,Model model) {
 		Card card = null;
 		try {
@@ -57,6 +60,7 @@ public class CollectionController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		model.addAttribute("Card",card);
 		if(card.getClass() == Minion.class) {		
 			return "postShowCardMinion";
@@ -182,15 +186,38 @@ public class CollectionController {
 			model.addAttribute("message", "Card not found");
 			return "cardNotFound";
 		}
+		List<Hero> heroes = new ArrayList<Hero>(this.cm.getHeros());
+		List<Rarity> rarities = new ArrayList<Rarity>(this.cm.getRarities());
+
+		if(!(heroes.remove(card.getHero())) || !(rarities.remove(card.getRarity()))) {
+			return "error";
+		}
+		
+		model.addAttribute("rarities",rarities);
+		model.addAttribute("chosenRarity", card.getRarity());
+		
+		model.addAttribute("heroes",heroes);
+		model.addAttribute("chosenHero",card.getHero());
+		
 		model.addAttribute("card",card);
+		
+		
 		if(card.getClass() == Minion.class) {
+		
+			List<TypeOfMinion> types = new ArrayList<TypeOfMinion>( this.cm.getTypesOfMinions() );
+			Minion minion = (Minion) card;
+			if(!(types.remove(minion.getTypeOfMinion()))){
+				return "error";
+			}
+			model.addAttribute("typesOfMinion", types);
+			model.addAttribute("chosenType", minion.getTypeOfMinion());
 			return "updateMinion";
 		}
 		if(card.getClass() == Spell.class) {
-			return "update/spell";
+			return "updatespell";
 		}
 		if(card.getClass() == Weapon.class) {
-			return "update/weapon";
+			return "updateweapon";
 		}
 		return "error" ;
 	}
@@ -201,17 +228,18 @@ public class CollectionController {
 							   @RequestParam("rarity") Integer rarity,@RequestParam("id") Integer id,@RequestParam("maxAtk") Integer maxAtk,
 							   @RequestParam("maxLife") Integer maxLife,@RequestParam("type") Integer type,Model model) {
 		
-		Card card;
+		Card card = null;
+		Minion minion = null;
 		try {
 			card = this.cm.showCard(id);
 		} catch (CardNotFoundException e) {
 			return "error";
 		}
 		if(card.getClass() == Minion.class) {
-			Minion minion = (Minion) card;
+			minion = (Minion) card;
+			
 			minion.setCost(cost);
 			minion.setDescriptionn(description);
-			
 			minion.setHero(this.cm.getHero(hero));
 			minion.setMaxAtk(maxAtk);
 			minion.setMaxLife(maxLife);
@@ -223,54 +251,76 @@ public class CollectionController {
 		}
 		
 		
-		return "error";
+		return "redirect:/showCard?cardName="+minion.getName();
 	}
 	
-	@GetMapping("update/atk")
-	public String updateAtk2(Model model) {
-		return "updateAtk" ;
-	}
-	
-	@PostMapping("update/atk")
-	public String updateAtk(@RequestParam("id") Integer id, @RequestParam("newAtk") Integer newAtk,Model model) {
+	@PostMapping("update/spell")
+	public String updateSpell(@RequestParam("name") String name,@RequestParam("description") String description,
+							   @RequestParam("cost") Integer cost,@RequestParam("hero") String hero,
+							   @RequestParam("rarity") Integer rarity,@RequestParam("id") Integer id) {
+		
+		Card card = null;
+		Spell spell = null;
 		try {
-			this.cm.updateAtk(id, newAtk);
-			model.addAttribute("Card",this.cm.showCard(id));
+			card = this.cm.showCard(id);
 		} catch (CardNotFoundException e) {
-			model.addAttribute("message","There is no minions with that ID");
-			return "cardNotFound";
+			return "error";
 		}
-		return "postShowMinion" ;
-	}
-
-
-	@GetMapping("/update/def")
-	public String updateDef2(Model model) {
-		return "updateDef" ;
+		if(card.getClass() == Spell.class) {
+			spell = (Spell) card;
+			
+			spell.setCost(cost);
+			spell.setDescriptionn(description);
+			spell.setHero(this.cm.getHero(hero));
+			spell.setName(name);
+			spell.setRarity(this.cm.getRarity(rarity));
+			this.cm.updateSpell(spell);
+			
+		}
+		
+		
+		return "redirect:/showCard?cardName="+spell.getName();
 	}
 	
-	@PostMapping("/update/def")
-	public String updateDef(@RequestParam("id") Integer id, @RequestParam("newDef") Integer newDef,Model model) {
+	@PostMapping("/update/weapon")
+	public String updateWeapon(	  @RequestParam("name") String name,@RequestParam("description") String description,
+								  @RequestParam("cost") Integer cost,@RequestParam("hero") String hero,
+								  @RequestParam("rarity") Integer rarity, @RequestParam("duration") Integer duration,
+								  @RequestParam("attack") Integer attack, @RequestParam("id") Integer id, Model model) {
+		Card card = null;
+		Weapon weapon = null;
 		try {
-			this.cm.updateDef(id, newDef);
-			model.addAttribute("Card",this.cm.showCard(id));
+			card = this.cm.showCard(id);
 		} catch (CardNotFoundException e) {
-			model.addAttribute("message","There is no minions with that ID");
-			return "cardNotFound";
+			return "error";
 		}
-		return "postShowCard" ;
+		if(card.getClass() == Weapon.class) {
+			weapon = (Weapon) card;
+			
+			weapon.setCost(cost);
+			weapon.setDescriptionn(description);
+			weapon.setHero(this.cm.getHero(hero));
+			weapon.setName(name);
+			weapon.setRarity(this.cm.getRarity(rarity));
+			weapon.setAttack(attack);
+			weapon.setDuration(duration);
+		
+			this.cm.updateWeapon(weapon);
+			
+		}
+		
+		
+		return "redirect:/showCard?cardName="+weapon.getName();
 	}
 
 	
-	@GetMapping("deleteCard")
+	@GetMapping("delete/ 	Card")
 	public String deleteCard(Model model) {
 		return "deleteCard" ;
 	}
-	
-	@PostMapping("deleteCard")
+	@GetMapping("deleteCard")
 	public String deleteCard2(@RequestParam("id") Integer id,Model model) {
 		try {
-			System.out.println(id);
 			this.cm.deleteCard(id);
 		} catch (CardNotFoundException e) {
 			model.addAttribute("message", e.getMessage());

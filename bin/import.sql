@@ -32,7 +32,7 @@ insert into cards(name,description,rarity,hero,id,cost) values ('Vilespine Slaye
 insert into minions(maxatk,maxlife,typeofminion,id) values (3,4,7,13);
 
 insert into cards(name,description,rarity,hero,id,cost) values ('Tirion','Divine shield, taunt and deathRattle: Gain a 5/3 Ash Bringer',4,6,2,8);
-insert into minions(maxatk,maxlife,typeofminion,id) values (1,2,1,2);
+insert into minions(maxatk,maxlife,typeofminion,id) values (1,2,7,2);
 
 insert into cards(name,description,rarity,hero,id,cost) values ('Flame Strike','Deal 4 damage to all enemy minions',2,2,3,1);
 insert into spells(id) values (3);

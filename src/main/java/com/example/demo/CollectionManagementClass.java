@@ -39,13 +39,13 @@ public class CollectionManagementClass implements CollectionManagement{
 	}
 
 	@Override
-	public void updateAtk(Integer cardId, Integer newAtk) throws CardNotFoundException {
-		cm.updateAtk(cardId, newAtk);
+	public void updateSpell(Spell updatedSpell){
+		this.cm.updateSpell(updatedSpell);
 	}
 
 	@Override
-	public void updateDef(Integer cardId, Integer newDef) throws CardNotFoundException {
-		cm.updateDef(cardId, newDef);
+	public void updateWeapon(Weapon updatedWeapon){
+		this.cm.updateWeapon(updatedWeapon);
 		
 	}
 

@@ -24,7 +24,7 @@
 </head>
 <body>
 	<div class="container">
-      <form th:action="@{/update/minion}" method="post">
+      <form th:action="@{/update/weapon}" method="post">
             <div  class="form-group">
             	<label> Card Id: </label>
             	<input class="form-control"  type="number" name="id" required = "required" th:value="${card.id}" readonly="readonly"/> 
@@ -34,15 +34,9 @@
             	<label> Card Name: </label>
             	<input class="form-control" type="text" name="name" required = "required" th:value="${card.name}" placeholder="Insert the card name"/> 
             </div>
-        	<div  class="form-group">
-        		<label>Type Of Minion:</label>
-					<select class="form-control" name = "type">
-								<option  th:each="type: ${typesOfMinion}" th:value="${type.id}" th:text="${type.name}"/> 
-								<option selected="selected" th:value="${chosenType.id}" th:text="${chosenType.name}"/> 
-					</select>			</div>
 			
 			<div  class="form-group">
-        		<label>Rarity of Minion:</label>
+        		<label>Rarity of Weapon:</label>
 					<select class="form-control" name = "rarity">
 								<option  th:each="rarity: ${rarities}" th:value="${rarity.id}" th:text="${rarity.name}"/> 
 								<option selected="selected" th:value="${chosenRarity.id}" th:text="${chosenRarity.name}"/> 
@@ -50,7 +44,7 @@
 			</div>
 			
 			<div  class="form-group">
-        		<label>Minion Hero:</label>
+        		<label>Weapon Hero:</label>
             		<select class="form-control" name = "hero">
 								<option selected="selected" th:value="${chosenHero.name}" th:text="${chosenHero.name}"/> 
 								<option  th:each="hero: ${heroes}" th:value="${hero.name}" th:text="${hero.name}"/>
@@ -59,23 +53,23 @@
 			</div>
 			
 			<div  class="form-group">
-				<label> Minion description:</label>
+				<label> Weapon description:</label>
 				<input class="form-control" type="text" th:value="${card.description}" name="description" placeholder="Insert the minion description"/> 
 			</div>
 			
 			<div  class="form-group">
-				<label> Minion cost: </label>
+				<label> Weapon cost: </label>
 				<input  class="form-control" type="number" min="0" required = "required" th:value="${card.cost}" name="cost" placeholder="Insert the minion cost"/> 
 			</div>
 			
 			<div  class="form-group">
-				<label> Minion attack: </label>
-				<input class="form-control" type="number" min="0" required = "required" name="maxAtk" th:value="${card.maxAtk}" placeholder="Insert the minion attack"/> 
+				<label> Weapon attack: </label>
+				<input class="form-control" type="number" min="0" required = "required" name="attack"  th:value="${card.attack}" placeholder="Insert the weapon attack"/> 
 			</div>
 			
 			<div  class="form-group">
-				<label> Minion life: </label>
-				<input class="form-control" type="number" min="0" required = "required" name="maxLife"  th:value="${card.maxLife}" placeholder="Insert the life"/> 
+				<label> Weapon durability: </label>
+				<input class="form-control" type="number" min="0" required = "required" name="duration" th:value="${card.duration}" placeholder="Insert the weapon durability"/> 
 			</div>
 			      
 			
