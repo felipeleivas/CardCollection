@@ -6,6 +6,10 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-      <p  th:text="  'Your minion is ' + ${Card.name} +  ' and his description is: ' + ${Card.description}"> </p> 
+		<div>		
+			<h4 >
+			      <p  style="margin-left:50%" th:text="  'Your minion is ' + ${Card.name} +  ' his description is ' + ${Card.description} + ' the cost is ' + ${Card.cost} "> </p> 
+	     	</h4>
+		</div>
 </body>
 </html> 

@@ -3,7 +3,7 @@
 <head> 
     <title>Show Cards</title> 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<link rel = "stylesheet" type= "text/css" href = "background.css"/>
+	
 	<div th:replace="menu :: menu"></div> 
 	
 	<style>
@@ -81,7 +81,13 @@
 		  width:35%;
 		  
 		}
-
+		.td-remove{
+			margin-left:20px;
+			margin-right:0px;
+		}
+		.actions{
+			width:100	px;
+		}
 	</style>
 </head>
 
@@ -97,7 +103,6 @@
 				
 		    	<tr class="x1">
 		              <th th:text="Name">nomeCalibre</th>
-		              <th th:text="ID">nomeCalibre</th>
 		              <th th:text="Cost">nomeCalibre</th>
 		              <th th:text="Description">nomeCalibre</th>
 		              <th th:text="Hero">nomeCalibre</th>
@@ -109,16 +114,22 @@
 		  		
 					    <tr th:each="card : ${cards}">
 					    
-			      		<td th:text="${card.name}" >Banana</td>
-			      		<td th:text="${card.id}" >Banana</td>
+			      		<td> 
+			      		
+			      		<a th:text="${card.name}" style="color:white" th:href="'/showCard?cardName=' + ${card.name}" ></a>
+			      		
+			      		</td>
 			      		<td th:text="${card.cost}" >Banana</td>
 			      		<td th:text="${card.description}" >Banana</td>
 			      		<td th:text="${card.hero.name}" >Banana</td>
 			      		<td th:text="${card.rarity}" >Banana</td>
-						<td>
-							<a class="td-edit" th:href=" '/update/card?id=' + ${card.id}"><span
+						<td class = "actions">
+							<a class="td-edit" th:href=" '/update?id=' + ${card.id}" ><span
 							class="glyphicon glyphicon-edit"></span></a>
 							
+							<a class="td-remove"  th:href=" '/deleteCard?id=' + ${card.id}"><span 
+							class="glyphicon glyphicon-remove"></span></a>
+							 
 						</td>
 				 
 				 	   </tr>
@@ -128,17 +139,5 @@
 		    </table>
 		</div>
 	</div>
-	<footer>
-		<div style="text-align:right" >
-			<div style="font-size:5px">
-				<a href="http://sequelado.com.br/wp-content/uploads/2011/01/ventilador_online.gif"> calor</a>
-			</div>
-		</div>
-		<div style="text-align:left" >
-			<div style="font-size:5px">
-				<a href="https://1.bp.blogspot.com/-RnAvM9zAajU/VySuVUFbbWI/AAAAAAAAT4c/YN31UHGnlwwzOjCrjGfA1z_Oar6djL5XQCLcB/s1600/Gifs%2Banimados%2BLareira%2B12.gif"> frio</a>
-			</div>
-		</div>
-	</footer>
 </body>
 </html>

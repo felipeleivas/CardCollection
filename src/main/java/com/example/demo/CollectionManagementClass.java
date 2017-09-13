@@ -33,19 +33,19 @@ public class CollectionManagementClass implements CollectionManagement{
 	}
 
 	@Override
-	public void updateCost(Integer cardId, Integer newCost) throws CardNotFoundException {
-		cm.updateCost(cardId, newCost);
+	public void updateMinion(Minion updatedMinion) {
+		cm.updateMinion(updatedMinion);
 		
 	}
 
 	@Override
-	public void updateAtk(Integer cardId, Integer newAtk) throws CardNotFoundException {
-		cm.updateAtk(cardId, newAtk);
+	public void updateSpell(Spell updatedSpell){
+		this.cm.updateSpell(updatedSpell);
 	}
 
 	@Override
-	public void updateDef(Integer cardId, Integer newDef) throws CardNotFoundException {
-		cm.updateDef(cardId, newDef);
+	public void updateWeapon(Weapon updatedWeapon){
+		this.cm.updateWeapon(updatedWeapon);
 		
 	}
 

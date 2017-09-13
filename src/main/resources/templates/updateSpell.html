@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:replace="menu :: menu"></div> 
+<head> 
+    <title>Add Minion</title> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<style type="text/css">
+	
+	.form-control{
+	background-color:rgba(255,255,255,0.5);
+	
+	}
+	select, option {
+	    width: 250px !important;
+	    background: rgba(255,255,255,0.5) !important;
+	    color:blue;
+	    text-shadow:0 1px 0 rgba(0,0,0,0.4);
+	}
+	option:not(:checked) {
+	    background-color: white;
+	    color:#000;
+	}
+	</style>
+</head>
+<body>
+	<div class="container">
+      <form th:action="@{/update/spell}" method="post">
+            <div  class="form-group">
+            	<label> Card Id: </label>
+            	<input class="form-control"  type="number" name="id" required = "required" th:value="${card.id}" readonly="readonly"/> 
+            </div>
+            
+            <div  class="form-group">
+            	<label> Card Name: </label>
+            	<input class="form-control" type="text" name="name" required = "required" th:value="${card.name}" placeholder="Insert the card name"/> 
+            </div>
+			
+			<div  class="form-group">
+        		<label>Rarity of Spell:</label>
+					<select class="form-control" name = "rarity">
+								<option  th:each="rarity: ${rarities}" th:value="${rarity.id}" th:text="${rarity.name}"/> 
+								<option selected="selected" th:value="${chosenRarity.id}" th:text="${chosenRarity.name}"/> 
+					</select>
+			</div>
+			
+			<div  class="form-group">
+        		<label>Spell Hero:</label>
+            		<select class="form-control" name = "hero">
+								<option selected="selected" th:value="${chosenHero.name}" th:text="${chosenHero.name}"/> 
+								<option  th:each="hero: ${heroes}" th:value="${hero.name}" th:text="${hero.name}"/>
+					</select>
+
+			</div>
+			
+			<div  class="form-group">
+				<label> Spell description:</label>
+				<input class="form-control" type="text" th:value="${card.description}" name="description" placeholder="Insert the minion description"/> 
+			</div>
+			
+			<div  class="form-group">
+				<label> Spell cost: </label>
+				<input  class="form-control" type="number" min="0" required = "required" th:value="${card.cost}" name="cost" placeholder="Insert the minion cost"/> 
+			</div>
+			
+			
+            <div><input class="btn btn-outline-info" type="submit" value="Update Card"/></div>
+        </form>
+        <br/>
+        
+   </div>
+</body>
+</html> 

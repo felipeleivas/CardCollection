@@ -43,52 +43,21 @@ public class CardManagementClass implements CardManagement{
 	}
 
 	@Override
-	public void updateCost(Integer cardId, Integer newCost) throws CardNotFoundException {
-		Card card;
-		card = this.getCardByCode(cardId);
-		if(card != null) {
-			card.setCost(newCost);
-			if(card.getClass() == Minion.class) {
-				this.minions.save((Minion)card);
-			}
-			if(card.getClass() == Weapon.class) {
-				this.weapons.save((Weapon)card);
-			}
-			if(card.getClass() == Spell.class) {
-				this.spell.save((Spell)card);
-			}
-			
-		}
-		else {
-			throw new CardNotFoundException("There is not card with that ID");
-		}
+	public void updateMinion(Minion newMinion){
+		this.minions.save(newMinion);
 		
 	}
 
 	@Override
-	public void updateAtk(Integer cardId, Integer newAtk) throws CardNotFoundException {
-		Minion minion;
-		minion = this.findMinion(cardId);
-		if(minion != null) {			
-			minion.setMaxAtk(newAtk);
-			this.minions.save(minion);
-		}
-		else {
-			throw new CardNotFoundException("There is not card with that ID");
-		}
+	public void updateWeapon(Weapon updatedWeapon) {
+		this.weapons.save(updatedWeapon);
 	}
+		
+	
 
 	@Override
-	public void updateDef(Integer cardId, Integer newDef) throws CardNotFoundException {
-		Minion minion;
-		minion = this.findMinion(cardId);
-		if(minion != null) {			
-			minion.setMaxLife(newDef);
-			this.minions.save(minion);
-		}
-		else {
-			throw new CardNotFoundException("There is not card with that ID");
-		}
+	public void updateSpell(Spell updatedSpell){
+		this.spell.save(updatedSpell);
 	}
 
 	@Override
