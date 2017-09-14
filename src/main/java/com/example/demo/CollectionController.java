@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import aj.org.objectweb.asm.Type;
 import exceptions.CardNotFoundException;
 import exceptions.TypeOfCardNotExist;
 
@@ -58,8 +57,9 @@ public class CollectionController {
 			card = this.cm.showCard(cardName);
 		} catch (CardNotFoundException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+			model.addAttribute("message", "There is no card with that name registred");
+			return "cardNotFound";
+			}
 		
 		model.addAttribute("Card",card);
 		if(card.getClass() == Minion.class) {		
