@@ -25,10 +25,8 @@
 <body>
 	<div class="container">
       <form th:action="@{/update/minion}" method="post">
-            <div  class="form-group">
-            	<label> Card Id: </label>
-            	<input class="form-control"  type="number" name="id" required = "required" th:value="${card.id}" readonly="readonly"/> 
-            </div>
+            	<input class="form-control"  type="hidden"  name="id" required = "required" th:value="${card.id}" readonly="readonly"/> 
+
             
             <div  class="form-group">
             	<label> Card Name: </label>

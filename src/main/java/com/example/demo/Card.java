@@ -12,20 +12,26 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
+
+@Inheritance(strategy=InheritanceType.JOINED)
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
-@Table(name = "cards", uniqueConstraints = 	@UniqueConstraint(columnNames="name"))
+@OnDelete(action = OnDeleteAction.CASCADE)
+@Table(name="card", uniqueConstraints = @UniqueConstraint(columnNames="name"))
 public abstract class Card {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+	@SequenceGenerator(name="SEQ_CARDS", sequenceName="SEQ_CARDS", initialValue = 1, allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="SEQ_CARDS")
+	private Integer id;
 	
 	@NotNull
 	@Size(min=1, max = 20)

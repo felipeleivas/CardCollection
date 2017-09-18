@@ -124,7 +124,7 @@
 			      		<td th:text="${card.hero.name}" >Banana</td>
 			      		<td th:text="${card.rarity}" >Banana</td>
 						<td class = "actions">
-							<a class="td-edit" th:href=" '/update?id=' + ${card.id}" ><span
+							<a class="td-edit" th:href=" '/update?cardName=' + ${card.name}" ><span
 							class="glyphicon glyphicon-edit"></span></a>
 							
 							<a class="td-remove"  th:href=" '/deleteCard?id=' + ${card.id}"><span 

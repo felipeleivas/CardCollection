@@ -178,10 +178,10 @@ public class CollectionController {
 //	###############################################################################################################################################
 
 	@GetMapping("update")
-	public String update(Model model,@RequestParam("id")Integer id) {
+	public String update(Model model,@RequestParam("cardName")String cardName) {
 		Card card = null;
 		try {
-			card=this.cm.showCard(id);
+			card=this.cm.showCard(cardName);
 		} catch (CardNotFoundException e) {
 			model.addAttribute("message", "Card not found");
 			return "cardNotFound";
@@ -314,7 +314,7 @@ public class CollectionController {
 	}
 
 	
-	@GetMapping("delete/ 	Card")
+	@GetMapping("delete/Card")
 	public String deleteCard(Model model) {
 		return "deleteCard" ;
 	}

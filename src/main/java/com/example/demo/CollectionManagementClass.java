@@ -53,10 +53,7 @@ public class CollectionManagementClass implements CollectionManagement{
 	public void deleteCard(Integer cardId) throws CardNotFoundException {
 		Card card = cm.getCardByCode(cardId);
 		if(card != null) {
-			Hero hero = hp.findOne((card.getHero().getId()));
-			hero.deleteCardFromCardList(card);
 			cm.deleteCard(cardId);
-			hp.save(hero);	
 		}
 	}
 
@@ -102,7 +99,7 @@ public class CollectionManagementClass implements CollectionManagement{
 
 	@Override
 	public List<Card> showAllHeroCards(String  heroName) {
-		return this.hp.findByName(heroName).getCardList();
+		return this.cm.showHeroAllCards(this.hp.findByName(heroName));
 	}
 
 	@Override

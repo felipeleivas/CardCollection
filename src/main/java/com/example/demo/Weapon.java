@@ -2,12 +2,17 @@ package com.example.demo;
 
 import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.Min;
+
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
 @Table(name = "weapons")
 @PrimaryKeyJoinColumn(name="id")
+@OnDelete(action=OnDeleteAction.CASCADE)
 public class Weapon extends Card {
 	@Min(0)
 	Integer attack;

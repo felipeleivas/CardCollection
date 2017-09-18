@@ -9,7 +9,7 @@ public class CardCollectionApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(CardCollectionApplication.class, args);
-		RestTemplate restTemplate = new RestTemplate();
-		restTemplate.getForObject("http://localhost:8080/autoUpdateTheDataBaseBecauseIDontKnowHowToImport", Void.class);
+		/*RestTemplate restTemplate = new RestTemplate();
+		restTemplate.getForObject("http://localhost:8080/autoUpdateTheDataBaseBecauseIDontKnowHowToImport", Void.class);*/
 	}
 }
